@@ -45,7 +45,8 @@ Faça estas perguntas juntas. Pule a de escopo se `$ARGUMENTS` já disser `globa
 Peça, numa mensagem só, com um exemplo curto de resposta:
 
 1. Nome da empresa e do time.
-2. Quem participa das reuniões: nome completo, como é chamado na fala (apelidos) e papel.
+2. Quem participa das reuniões: nome completo, como é chamado na fala (apelidos) e papel;
+   quem conduz; e se há homônimos ("quando falam Rodrigo, é sempre o Rodrigo X").
 3. Produtos/sistemas, clientes e jargões que aparecem nas reuniões.
 4. Idioma das reuniões, se não for português.
 5. Pasta onde guardar áudios e resumos (padrão `~/reunioes`, uma subpasta por data).
@@ -76,7 +77,10 @@ Para cada ferramenta escolhida (destino ou rastreador):
 Monte o `config.json` e mostre-o ao usuário antes de gravar. Com o OK:
 
 - crie a pasta de config escolhida e grave `config.json`;
-- crie `glossario.md` com uma tabela de pessoas (como falam → nome completo → papel), as
+- crie `regras.md` com o que o usuário disser sobre condução, homônimos e publicação (se não
+  disser nada, só os títulos das seções: **Condução**, **Homônimos**, **Quem está usando**,
+  **Publicação**) — a skill vai alimentando com o uso;
+- crie `glossario.md` com uma tabela de pessoas (como falam → nome completo → papel observado), as
   listas de produtos, clientes e termos, e uma seção vazia **Erros recorrentes da
   transcrição** (como soou → grafia certa), que a skill vai alimentando com o uso;
 - crie a `pasta_saida`, se não existir;

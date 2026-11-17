@@ -42,8 +42,11 @@ def montar_prompt(cfg, tipo):
 
     apelidos = []
     for p in cfg.get("participantes", []):
-        apelidos.extend(p.get("apelidos") or [])
-        if p.get("nome"):
+        # O Whisper precisa da forma falada; o nome completo so entra quando nao ha
+        # apelido, para nao gastar o limite do prompt com o que ninguem diz em voz alta.
+        if p.get("apelidos"):
+            apelidos.extend(p["apelidos"])
+        elif p.get("nome"):
             apelidos.append(p["nome"])
     for rotulo, itens in (
         ("Participantes", apelidos),

@@ -10,9 +10,17 @@ Gerada por `/transcritor:configurar`. Duas camadas, a primeira que existir vence
 `bash <scripts>/config.sh pasta` diz qual está ativa. Cada pasta tem:
 
 - `config.json` — os campos abaixo.
-- `glossario.md` — grafias oficiais e erros recorrentes da transcrição. Cresce com o uso:
-  toda correção que o usuário fizer num resumo e que valha para as próximas reuniões entra
-  aqui (com a permissão dele).
+- `glossario.md` — grafias oficiais, erros recorrentes da transcrição e o **papel observado**
+  de cada pessoa (quem cuida de qual assunto). Cresce com o uso: toda correção que valha para
+  as próximas reuniões entra aqui (Fase 6 da skill).
+- `regras.md` (opcional) — regras da empresa que não são vocabulário e valem acima das regras
+  genéricas da skill: quem conduz a reunião, homônimos ("quando falam X, é sempre a pessoa Y"),
+  como achar o apelido de quem está usando, onde e como publicar (título, pasta por ano),
+  padrão de título dos cards. Também cresce com o uso.
+
+A pasta pode ser um link simbólico para um repositório do time (`ln -s <repo>/transcritor
+~/.config/transcritor`): assim o glossário e as regras ficam versionados e quem corrige um nome
+corrige para todos.
 
 ## `config.json`
 
@@ -51,7 +59,7 @@ Gerada por `/transcritor:configurar`. Duas camadas, a primeira que existir vence
 | `pasta_saida` | onde ficam áudio, transcrição e resumo. `pasta_por_data` cria `DD-MM-AAAA/` dentro. |
 | `participantes`, `produtos`, `clientes`, `termos` | viram o prompt inicial do Whisper — é o que faz ele acertar nomes próprios. O prompt aproveita ~800 caracteres; ponha primeiro o que mais erra. |
 | `integracoes.publicar_em` | `arquivo`, `confluence`, `notion`, `google_docs` ou `outro`. |
-| `integracoes.destino` | coordenadas do destino, livres por ferramenta. Ex. Confluence: `{"site": "acme.atlassian.net", "espaco": "TIME", "pagina_pai": "Dailys"}`; Notion: `{"pagina_pai": "Reuniões"}`. IDs descobertos na primeira publicação podem ser gravados aqui para pular a busca. |
+| `integracoes.destino` | coordenadas do destino, livres por ferramenta. Ex. Confluence: `{"site": "acme.atlassian.net", "espaco": "TIME", "pagina_pai": "Dailys"}`, ou com a pasta do ano já resolvida: `{"site": "…", "espaco": "TIME", "pasta_ano": "123456", "titulo_pasta_ano": "AAAA — Dailys"}`; Notion: `{"pagina_pai": "Reuniões"}`. IDs descobertos na primeira publicação podem ser gravados aqui para pular a busca. |
 | `integracoes.rastreador` | `nenhum`, `jira`, `linear`, `asana`, `github`, `outro`. Usado para cruzar quem fez o quê e citar cards. |
-| `integracoes.rastreador_config` | ex. Jira: `{"site": "acme.atlassian.net", "projeto": "ABC", "url_card": "https://acme.atlassian.net/browse/{chave}"}`. |
+| `integracoes.rastreador_config` | ex. Jira: `{"site": "acme.atlassian.net", "cloud_id": "…", "projeto": "ABC", "url_card": "https://acme.atlassian.net/browse/{chave}", "janela": "gravacao"}`. `janela: "gravacao"` fecha a busca no horário da gravação (padrão); `"agora"` deixa aberta. |
 | `integracoes.revisar_antes_de_publicar` | mantenha `true`. Publicar é visível para o time inteiro. |

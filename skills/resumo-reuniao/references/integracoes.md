@@ -26,8 +26,22 @@ confirma quem falou, e o título traz a grafia oficial de produtos e clientes.
 - Busque os itens **atualizados desde o dia útil anterior** à reunião, no projeto configurado,
   trazendo só chave, título, status e responsável. Ex. Jira:
   `project = ABC AND updated >= "AAAA-MM-DD" ORDER BY updated DESC`.
+- **Feche a janela no horário da gravação** quando o resumo é feito depois da reunião (o nome
+  do áudio costuma trazer a hora, ex. `27-10-2026 13.29`):
+  `updated >= "<véspera>" AND updated <= "<AAAA-MM-DD> <HH:MM>"`. O que mudou depois da reunião
+  não foi dito nela e confunde a atribuição.
 - Se a resposta vier grande e for salva em arquivo, extraia as quatro colunas com um script
-  curto em vez de ler o JSON inteiro.
+  curto em vez de ler o JSON inteiro. Ex. (Jira, formato `issues.nodes`):
+
+  ```bash
+  python3 -c "
+  import json,sys
+  d=json.load(open(sys.argv[1]))
+  for n in d['issues']['nodes']:
+      f=n['fields']; a=(f.get('assignee') or {}).get('displayName','-')
+      print(f\"{n['key']:<10} | {a:<26} | {f['status']['name']:<26} | {f['summary']}\")
+  " <arquivo-salvo> > cards.txt
+  ```
 - Cite os itens como **link clicável**, montado com `rastreador_config.url_card` quando houver
   (`[ABC-123](https://acme.atlassian.net/browse/ABC-123)`), nunca a chave solta.
 - Somente leitura. Criar, comentar ou mover card é outra tarefa e precisa de pedido explícito.
@@ -52,9 +66,23 @@ Só depois do OK explícito do usuário (ver Fase 5 do SKILL.md).
 | `google_docs` | Documento novo na pasta `destino.pasta`, se houver. |
 | `outro` | Siga o que estiver descrito em `destino`; na dúvida, pergunte. |
 
+Se o `regras.md` disser onde e como publicar (pasta por ano, título), ele vence esta tabela.
+Para achar o que já existe numa pasta, **liste os filhos** em vez de buscar: a busca do
+Confluence demora a indexar página recém-criada ou movida.
+
 Depois de publicar, devolva o link. Grave no `config.json` o ID da página-pai/espaço que você
 descobriu (pergunte antes de escrever na config), para a próxima vez pular a busca. Se o
 usuário pedir mudança num resumo já publicado, **edite a página existente**, não crie outra.
 
 Mandar o resumo por Slack, e-mail ou chat é envio de mensagem em nome do usuário: só com
 pedido explícito e confirmação do destinatário naquela vez.
+
+## Editar uma página já publicada
+
+O time edita a página depois de publicada, e atualizar o corpo inteiro a partir do `.md` local
+**apaga** essas edições sem aviso. Antes de todo update:
+
+1. Liste as versões da página. Se houver versão posterior à última que você publicou, compare
+   as duas (diff de versões, se a ferramenta tiver).
+2. Leve as mudanças dos outros para o `.md` local e só então aplique a sua correção.
+3. Publique com uma mensagem de versão que diga o que mudou.

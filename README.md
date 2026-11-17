@@ -41,7 +41,8 @@ Mande o áudio ou o vídeo e peça o resumo ("resume a daily de hoje", "ata dess
 
 - Linux ou macOS (no Windows, via WSL), com `python3` 3.9+ e `curl`.
 - ~2 GB livres: o ambiente Python fica em `~/.cache/transcritor/venv` e o modelo no cache do
-  Hugging Face. A primeira transcrição baixa tudo isso; as seguintes começam na hora.
+  Hugging Face. **Instalar o plugin não baixa nada disso**: o download só acontece quando você
+  pede para transcrever ou resumir uma reunião pela primeira vez. As seguintes começam na hora.
 
 ## Configuração
 
@@ -52,7 +53,9 @@ Mande o áudio ou o vídeo e peça o resumo ("resume a daily de hoje", "ata dess
 
 Cada pasta tem `config.json` (campos em
 [`references/configuracao.md`](skills/resumo-reuniao/references/configuracao.md)) e
-`glossario.md`, que cresce conforme você corrige os resumos.
+`glossario.md`, que cresce conforme você corrige os resumos. Opcional: `regras.md`, com as
+regras da empresa (quem conduz, homônimos, onde publicar). A pasta pode ser um link para um
+repositório do time, para o glossário valer para todos.
 
 ## Estrutura
 
