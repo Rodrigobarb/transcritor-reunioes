@@ -173,7 +173,17 @@ quem está usando. Apresente, nesta ordem e sem mais nada:
    > - **Destaques** — `⟨Coperfil⟩` não achei no rastreador nem na base
 
    Sem nada a conferir, diga "Nada a conferir".
-3. Uma linha final: "Responda **pode publicar** ou mande as correções."
+3. **Candidatas a regra** — só se houver: decisões ditas na reunião que valem além do card e
+   que um agente ou um colega "corrigiria" por engano depois. Sinais: "é intencional", "deixa
+   assim", "não é bug", "o cliente X usa Y", "isso é contagem, não quantidade", "a partir de
+   agora…". No máximo 3, uma linha cada, com o destino que o `regras.md` indicar (ou
+   `decisoes.md` da config, se ele não indicar nada):
+
+   > - **Regra?** "o cliente Alfa ainda envia pedidos pela API antiga" (Ana, 07:40) → regras do app de vendas
+
+   Não é regra: status de tarefa, prazo, opinião, combinado só daquele card.
+4. Uma linha final: "Responda **pode publicar** ou mande as correções." (Com candidatas: "…e diga
+   quais regras entram.")
 
 Não faça perguntas abertas, não liste o que já está certo e não peça confirmação item a item.
 Se vierem correções, aplique, registre o aprendizado (Fase 6) e **publique em seguida sem pedir
@@ -201,6 +211,7 @@ encerrada, mesmo com a página publicada. Toda correção de quem usa, e todo pa
 | Quem cuida de qual assunto/card | coluna "Papel observado" do glossário — é o que permite atribuir sem perguntar da próxima vez |
 | Nome que o Whisper precisa ouvir certo | `participantes`/`produtos`/`clientes`/`termos` do `config.json` |
 | Regra da empresa (condução, homônimos, publicação) | `regras.md` da config |
+| Candidata a regra **aprovada** por quem usa (Fase 5, item 3) | o destino que o `regras.md` indica; sem indicação, `decisoes.md` da config, no formato `- **<frase curta>** (<AAAA-MM-DD>, reunião <tipo>, <quem disse>): <o que é e por quê>.` Candidata sem resposta não entra |
 | Regra genérica de como montar, escrever ou publicar | este `SKILL.md`, na fase correspondente, com o motivo |
 | Preferência de quem usa que vale fora do transcritor | memória do projeto |
 

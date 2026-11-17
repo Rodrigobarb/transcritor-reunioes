@@ -16,7 +16,12 @@ Gerada por `/transcritor:configurar`. Duas camadas, a primeira que existir vence
 - `regras.md` (opcional) — regras da empresa que não são vocabulário e valem acima das regras
   genéricas da skill: quem conduz a reunião, homônimos ("quando falam X, é sempre a pessoa Y"),
   como achar o apelido de quem está usando, onde e como publicar (título, pasta por ano),
-  padrão de título dos cards. Também cresce com o uso.
+  padrão de título dos cards. Também cresce com o uso. Pode dizer, numa seção "Regras de
+  negócio", para onde vão as **candidatas a regra** aprovadas (Fase 5, item 3): por exemplo, o
+  arquivo de regras de cada produto num repositório do time.
+- `decisoes.md` (opcional, criado no primeiro uso) — destino padrão das candidatas a regra
+  aprovadas quando o `regras.md` não indica outro: decisões de negócio ditas em reunião que
+  valem além do card ("é intencional", "o cliente X usa Y").
 
 A pasta pode ser um link simbólico para um repositório do time (`ln -s <repo>/transcritor
 ~/.config/transcritor`): assim o glossário e as regras ficam versionados e quem corrige um nome
